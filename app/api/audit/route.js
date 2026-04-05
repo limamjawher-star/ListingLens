@@ -25,9 +25,9 @@ Use this exact structure with realistic varied scores between 3 and 9:
 
 {"overall":64,"title":"Airbnb Listing ${listingId}","factors":[{"name":"Title keywords","score":5},{"name":"Photo quality","score":7},{"name":"Description","score":4},{"name":"Amenities","score":8},{"name":"Response rate","score":6},{"name":"Pricing","score":5},{"name":"Instant book","score":3},{"name":"Review keywords","score":6}],"fix1":"Add your neighborhood name to your title — change generic titles like Cozy Studio to Cozy Studio in Bastille with City Views — location keywords increase impressions by 23 percent","fix2":"Enable Instant Book in your Airbnb host settings — Airbnb ranks instant book listings up to 40 percent higher in search results than request-to-book listings","fix3":"Add at least 20 photos covering every room, outdoor spaces, the building entrance, and nearby landmarks — listings with 20 plus photos receive significantly more booking requests"}`;
 
-    // FIXED URL: Changed v1beta to v1
+    // FIXED: Using v1beta which is required for the gemini-1.5-flash model
     const geminiRes = await fetch(
-      `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
