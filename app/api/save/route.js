@@ -1,18 +1,17 @@
 import { createClient } from '@supabase/supabase-js';
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_KEY
-);
-
 export async function POST(request) {
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    process.env.SUPABASE_SERVICE_KEY
+  );
+
   const { email, url, result } = await request.json();
 
   if (!email || !result) {
     return Response.json({ error: 'Missing data' }, { status: 400 });
   }
 
-  // Save audit
   const { error: auditError } = await supabase.from('audits').insert({
     user_email: email,
     listing_url: url,
@@ -35,7 +34,6 @@ export async function POST(request) {
     return Response.json({ error: 'Save failed' }, { status: 500 });
   }
 
-  // Add to subscribers list (ignore duplicate emails)
   await supabase.from('subscribers').upsert(
     { email, listing_url: url },
     { onConflict: 'email' }
