@@ -10,7 +10,7 @@ export default function Home() {
   const [saved, setSaved] = useState(false);
 
   async function runAudit() {
-    if (!url.includes('airbnb.com')) {
+    if (!url.includes('airbnb.')) {
       setError('Please enter a valid Airbnb listing URL.');
       return;
     }
