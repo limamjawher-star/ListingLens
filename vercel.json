@@ -1,0 +1,8 @@
+{
+  "crons": [
+    {
+      "path": "/api/pricing-pulse",
+      "schedule": "0 8 * * 1"
+    }
+  ]
+}
